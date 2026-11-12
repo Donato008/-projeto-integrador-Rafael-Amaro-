@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Catálogo de celulares com melhor custo-benefício em 2026, por faixa de preço, até R$ 7.000.">
+  <title>Catálogo de Celulares Custo-Benefício 2026</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- A11Y 1: link para pular direto ao conteúdo (teclado) -->
+  <a class="pular-link" href="#conteudo">Ir para o conteúdo principal</a>
+
+  <header id="topo">
+    <nav class="navbar navbar-expand-md sticky-top bg-white border-bottom" aria-label="Navegação principal">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="#topo">
+          <img src="assets/images/logo.svg" alt="" width="32" height="32">
+          Celulares 2026
+        </a>
+        <!-- A11Y 2: botão real com aria-label e aria-expanded (o Bootstrap atualiza o estado) -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Abrir menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+          <ul class="navbar-nav ms-auto align-items-md-center gap-md-1">
+            <li class="nav-item"><a class="nav-link ativo" href="#catalogo" aria-current="true">Catálogo</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Faixas</a>
+              <ul class="dropdown-menu">
+                <li><button class="dropdown-item" type="button" data-faixa="todas">Todas as faixas</button></li>
+                <li><button class="dropdown-item" type="button" data-faixa="entrada">Entrada</button></li>
+                <li><button class="dropdown-item" type="button" data-faixa="intermediario">Intermediário</button></li>
+                <li><button class="dropdown-item" type="button" data-faixa="intermediario-superior">Intermediário superior</button></li>
+                <li><button class="dropdown-item" type="button" data-faixa="premium-acessivel">Premium acessível</button></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#comparador">Comparar</a></li>
+            <li class="nav-item"><a class="nav-link" href="#grafico">Notas</a></li>
+            <li class="nav-item"><a class="nav-link" href="#midia">Vídeo</a></li>
+            <li class="nav-item"><a class="nav-link" href="#sugestao">Sugerir</a></li>
+            <li class="nav-item">
+              <button class="btn btn-sm btn-outline-secondary" id="btn-favoritos" type="button" aria-pressed="false">
+                Favoritos <span class="badge text-bg-secondary" id="contador-favoritos">0</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero" aria-labelledby="titulo-hero">
+      <div class="container">
+        <div class="row align-items-center g-4">
+          <div class="col-12 col-md-8">
+            <h1 id="titulo-hero">Catálogo de Celulares Custo-Benefício 2026</h1>
+            <p class="lead">Bons celulares por faixa de preço, sem passar de R$ 7.000. Filtre, favorite e compare até três modelos.</p>
+            <a class="btn btn-primary" href="#catalogo">Ver catálogo</a>
+            <a class="btn btn-outline-secondary" href="#sugestao">Sugerir um celular</a>
+          </div>
+          <div class="col-12 col-md-4 text-md-end">
+            <!-- Aula 5: SVG com viewBox e nome acessível -->
+            <svg class="selo" viewBox="0 0 160 160" width="130" height="130" role="img" aria-labelledby="titulo-selo">
+              <title id="titulo-selo">Selo: melhor custo-benefício 2026</title>
+              <circle cx="80" cy="80" r="76" fill="#0f766e"/>
+              <circle cx="80" cy="80" r="66" fill="none" stroke="#ffffff" stroke-width="2" stroke-dasharray="4 4"/>
+              <text x="80" y="68" text-anchor="middle" font-size="15" fill="#ffffff">Melhor</text>
+              <text x="80" y="88" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">custo-benefício</text>
+              <text x="80" y="118" text-anchor="middle" font-size="26" font-weight="700" fill="#ffffff">2026</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+
+      <section id="catalogo" aria-labelledby="titulo-catalogo">
+        <h2 id="titulo-catalogo">Catálogo</h2>
+        <div class="row g-3 align-items-end mb-3">
+          <div class="col-12 col-md-5">
+            <label class="form-label" for="busca">Buscar pelo nome</label>
+            <input class="form-control" type="search" id="busca" autocomplete="off">
+          </div>
+          <div class="col-6 col-md-3">
+            <label class="form-label" for="ordem">Ordenar por</label>
+            <select class="form-select" id="ordem">
+              <option value="nota">Maior nota</option>
+              <option value="preco">Menor preço</option>
+            </select>
+          </div>
+        </div>
+        <div class="d-flex flex-wrap gap-2 mb-3" id="filtros" role="group" aria-label="Filtrar por faixa de preço">
+          <button type="button" class="btn btn-sm btn-outline-secondary active" data-faixa="todas" aria-pressed="true">Todas</button>
+          <button type="button" class="btn btn-sm btn-outline-secondary" data-faixa="entrada" aria-pressed="false">Entrada (até R$ 1.500)</button>
+          <button type="button" class="btn btn-sm btn-outline-secondary" data-faixa="intermediario" aria-pressed="false">Intermediário (R$ 1.500 a R$ 3.000)</button>
+          <button type="button" class="btn btn-sm btn-outline-secondary" data-faixa="intermediario-superior" aria-pressed="false">Superior (R$ 3.000 a R$ 5.000)</button>
+          <button type="button" class="btn btn-sm btn-outline-secondary" data-faixa="premium-acessivel" aria-pressed="false">Premium acessível (R$ 5.000 a R$ 7.000)</button>
+        </div>
+        <!-- A11Y 3: região "viva" anuncia a quantidade de resultados para leitores de tela -->
+        <p id="resultado" role="status" aria-live="polite" class="text-secondary"></p>
+        <div class="row g-3" id="lista"></div>
+        <p id="vazio" class="alert alert-secondary" hidden></p>
+      </section>
+
+      <section id="comparador" aria-labelledby="titulo-comparador">
+        <h2 id="titulo-comparador">Comparar celulares</h2>
+        <p>Marque a caixa “Comparar” em até três celulares do catálogo.</p>
+        <p id="aviso-comparar" role="status" aria-live="polite" class="text-danger"></p>
+        <div id="comparacao"></div>
+        <button type="button" class="btn btn-outline-secondary btn-sm mt-2" id="btn-limpar-comparacao">Limpar comparação</button>
+      </section>
+
+      <section id="grafico" aria-labelledby="titulo-grafico">
+        <h2 id="titulo-grafico">Nota de custo-benefício</h2>
+        <p>Nota do catálogo, de 0 a 10. Verde: faixa de entrada. Marrom: faixa intermediária.</p>
+        <!-- Aula 5: Canvas com role, aria-label e conteúdo alternativo -->
+        <canvas id="grafico-notas" width="640" height="340" role="img" aria-label="Gráfico de barras com a nota de custo-benefício de cada celular">
+          <p id="grafico-fallback"></p>
+        </canvas>
+      </section>
+
+      <section id="midia" aria-labelledby="titulo-midia">
+        <h2 id="titulo-midia">Vídeo de apresentação</h2>
+        <article>
+          <h3 class="h5">Apresentação do catálogo</h3>
+          <!-- Aula 4: vários formatos, controls, poster, legendas e preload coerente (só metadados) -->
+          <video controls preload="metadata" poster="assets/media/poster.jpg" width="640" height="360">
+            <source src="assets/media/apresentacao.mp4" type="video/mp4">
+            <source src="assets/media/apresentacao.webm" type="video/webm">
+            <track kind="subtitles" src="assets/media/legendas-pt.vtt" srclang="pt" label="Português" default>
+            <p>Seu navegador não suporta vídeo HTML5. <a href="assets/media/apresentacao.mp4">Baixe o vídeo</a>.</p>
+          </video>
+        </article>
+      </section>
+
+      <aside aria-labelledby="titulo-dica">
+        <h2 id="titulo-dica">Antes de comprar</h2>
+        <p>Confira se o aparelho é homologado: <a href="https://www.gov.br/anatel/pt-br" target="_blank" rel="noopener noreferrer">site da Anatel</a>.</p>
+      </aside>
+
+      <section id="sugestao" aria-labelledby="titulo-sugestao">
+        <h2 id="titulo-sugestao">Sugerir um celular</h2>
+        <p>Falta algum modelo com bom custo-benefício? Conte para a gente. Sua sugestão fica salva neste navegador.</p>
+        <form id="form-sugestao">
+          <fieldset class="mb-3">
+            <legend>Seus dados</legend>
+            <label class="form-label" for="nome">Nome completo</label>
+            <input class="form-control mb-2" type="text" id="nome" name="nome" required minlength="3" maxlength="60" autocomplete="name">
+            <label class="form-label" for="email">E-mail</label>
+            <input class="form-control" type="email" id="email" name="email" required autocomplete="email">
+          </fieldset>
+          <fieldset class="mb-3">
+            <legend>O que você procura</legend>
+            <label class="form-label" for="orcamento">Orçamento máximo (R$)</label>
+            <input class="form-control mb-2" type="number" id="orcamento" name="orcamento" required min="500" max="7000" step="100" aria-describedby="dica-orcamento">
+            <div id="dica-orcamento" class="form-text">Entre R$ 500 e R$ 7.000.</div>
+            <label class="form-label mt-2" for="faixa">Faixa de preço</label>
+            <select class="form-select" id="faixa" name="faixa" required>
+              <option value="">Selecione...</option>
+              <option value="entrada">Entrada (até R$ 1.500)</option>
+              <option value="intermediario">Intermediário (R$ 1.500 a R$ 3.000)</option>
+              <option value="intermediario-superior">Intermediário superior (R$ 3.000 a R$ 5.000)</option>
+              <option value="premium-acessivel">Premium acessível (R$ 5.000 a R$ 7.000)</option>
+            </select>
+          </fieldset>
+          <fieldset class="mb-3">
+            <legend>Uso principal</legend>
+            <div class="form-check"><input class="form-check-input" type="radio" id="uso-jogos" name="uso" value="jogos" required><label class="form-check-label" for="uso-jogos">Jogos</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" id="uso-fotos" name="uso" value="fotos-videos"><label class="form-check-label" for="uso-fotos">Fotos e vídeos</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" id="uso-bateria" name="uso" value="dia-a-dia"><label class="form-check-label" for="uso-bateria">Dia a dia, com bateria que dure</label></div>
+            <div class="form-check"><input class="form-check-input" type="radio" id="uso-trabalho" name="uso" value="trabalho-estudos"><label class="form-check-label" for="uso-trabalho">Trabalho e estudos</label></div>
+          </fieldset>
+          <fieldset class="mb-3">
+            <legend>Recursos importantes</legend>
+            <div class="form-check"><input class="form-check-input" type="checkbox" id="rec-5g" name="recursos" value="5g"><label class="form-check-label" for="rec-5g">Conexão 5G</label></div>
+            <div class="form-check"><input class="form-check-input" type="checkbox" id="rec-nfc" name="recursos" value="nfc"><label class="form-check-label" for="rec-nfc">NFC (pagamento por aproximação)</label></div>
+            <div class="form-check"><input class="form-check-input" type="checkbox" id="rec-carga" name="recursos" value="carregamento-rapido"><label class="form-check-label" for="rec-carga">Carregamento rápido</label></div>
+          </fieldset>
+          <fieldset class="mb-3">
+            <legend>Sua sugestão</legend>
+            <label class="form-label" for="modelo">Celular que você quer ver no catálogo</label>
+            <input class="form-control mb-2" type="text" id="modelo" name="modelo" required minlength="2" maxlength="80">
+            <label class="form-label" for="motivo">Por que ele tem bom custo-benefício?</label>
+            <textarea class="form-control" id="motivo" name="motivo" rows="3" maxlength="500"></textarea>
+          </fieldset>
+          <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" id="aceite" name="aceite" required>
+            <label class="form-check-label" for="aceite">Concordo em ser contatado por e-mail sobre esta sugestão</label>
+          </div>
+          <button class="btn btn-primary" type="submit">Enviar sugestão</button>
+          <button class="btn btn-outline-secondary" type="reset">Limpar formulário</button>
+        </form>
+        <p id="aviso-form" role="status" aria-live="polite" class="text-success mt-3"></p>
+        <h3 class="h5">Sugestões enviadas</h3>
+        <ul id="lista-sugestoes" class="list-group"></ul>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="rodape">
+    <div class="container">
+      <p>Projeto da disciplina Desenvolvimento Front-End para Web.</p>
+      <p>Preços de loja coletados em jul/2026 e out/2026, e mudam com frequência. A nota é avaliação própria do catálogo, com base em fichas técnicas e testes publicados.</p>
+      <p>Fontes: <a href="https://www.oficinadanet.com.br/topsmartphones/64420-top-10-celulares-ate-1500" target="_blank" rel="noopener noreferrer">Oficina da Net, celulares até R$ 1.500</a> e <a href="https://www.oficinadanet.com.br/topsmartphones/73012-melhores-celulares-custo-beneficio-outubro" target="_blank" rel="noopener noreferrer">Oficina da Net, custo-benefício de outubro</a>.</p>
+    </div>
+  </footer>
+
+  <div class="modal fade" id="modal-detalhes" tabindex="-1" aria-labelledby="modal-titulo" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title h5" id="modal-titulo"></h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body" id="modal-corpo"></div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+  <script src="js/dados.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
