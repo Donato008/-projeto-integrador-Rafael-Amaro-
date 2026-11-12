@@ -1,0 +1,73 @@
+/* style.css — Aulas 6 a 9 e 12: variáveis, box-sizing, layout, estados e integração com o Bootstrap.
+   Os estilos entram depois do Bootstrap e usam seletores de mesma força ou maiores. */
+:root {
+  --cor-texto: #16211d;
+  --cor-fundo: #f4f6f3;
+  --cor-destaque: #0f766e;
+  --cor-entrada: #0f766e;
+  --cor-intermediario: #9a5b00;
+  --cor-foco: #d97706;
+  --raio: 10px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+  color: var(--cor-texto);
+  background-color: var(--cor-fundo);
+}
+
+section[id], aside { padding-block: 2rem 1rem; scroll-margin-top: 4.5rem; }
+h1, h2 { line-height: 1.2; }
+
+/* A11Y 4: link de salto, visível só com o foco do teclado */
+.pular-link { position: absolute; left: -999px; top: 0; background: var(--cor-texto); color: #fff; padding: 0.5rem 1rem; z-index: 2000; }
+.pular-link:focus { left: 0; }
+
+/* A11Y 5: foco visível em todos os elementos interativos */
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible,
+textarea:focus-visible, summary:focus-visible, .nav-link:focus-visible {
+  outline: 3px solid var(--cor-foco);
+  outline-offset: 2px;
+}
+
+/* Navbar (Aula 8): estado ativo, hover e dropdown sem "buraco" de hover */
+.navbar .nav-link { color: var(--cor-texto); border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+.navbar .nav-link:hover, .navbar .nav-link.ativo { color: var(--cor-destaque); border-bottom-color: var(--cor-destaque); }
+.navbar .dropdown-menu { margin-top: 0; }
+@media (min-width: 768px) {
+  .navbar .dropdown:hover > .dropdown-menu { display: block; }
+}
+
+.hero { padding-block: 3rem 1rem; background: linear-gradient(180deg, #e6efe9, var(--cor-fundo)); }
+
+/* Cards (Aula 7): Flexbox no rodapé, pseudo-classes e pseudo-elemento */
+.card-celular { border-radius: var(--raio); border: 1px solid #d5ddd8; position: relative; transition: transform 0.2s ease; }
+.card-celular:hover { transform: translateY(-3px); }
+.card-celular::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 4px; border-radius: var(--raio) var(--raio) 0 0; background: var(--cor-destaque); }
+.nota-badge { flex: none; min-width: 2.75rem; text-align: center; padding: 0.15rem 0.5rem; border-radius: 999px; background: var(--cor-texto); color: #fff; font-weight: 700; }
+.faixa-tag { display: inline-block; margin-block: 0.5rem 0.25rem; padding: 0.1rem 0.6rem; border-radius: 4px; font-size: 0.8rem; color: #fff; }
+.faixa-entrada { background: var(--cor-entrada); }
+.faixa-intermediario { background: var(--cor-intermediario); }
+.faixa-intermediario-superior { background: #1d4ed8; }
+.faixa-premium-acessivel { background: #6d28d9; }
+.preco { font-size: 1.4rem; font-weight: 700; margin-bottom: 0; }
+.ficha { display: grid; grid-template-columns: auto 1fr; gap: 0.25rem 0.75rem; margin: 0.75rem 0 0; font-size: 0.9rem; }
+.ficha dt { font-weight: 600; }
+.ficha dd { margin: 0; }
+
+.tabela-comparacao tbody tr:nth-child(odd) { background: rgba(15, 118, 110, 0.06); }
+.tabela-comparacao th[scope="row"] { white-space: nowrap; }
+
+#grafico-notas { display: block; max-width: 100%; height: auto; background: #fff; border: 1px solid #d5ddd8; border-radius: var(--raio); }
+video { max-width: 100%; height: auto; border-radius: var(--raio); background: #000; }
+.selo { max-width: 100%; }
+
+.btn-outline-secondary.active, .btn-outline-secondary[aria-pressed="true"] { background: var(--cor-texto); color: #fff; border-color: var(--cor-texto); }
+
+.rodape { margin-top: 3rem; padding-block: 1.5rem; border-top: 1px solid #d5ddd8; font-size: 0.9rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .card-celular, .navbar .nav-link { transition: none; }
+}
