@@ -57,4 +57,4 @@ Fontes:
 
 ## Autor
 
-[Seu nome aqui]
+Rafael Amaro Donato
